@@ -33,12 +33,12 @@ docker compose up --build
 
 ## ドキュメント一覧
 
-詳細な仕様については `docs/` ディレクトリを参照してください。
+プロジェクトの目的、設計、運用の詳細は、以下のドキュメントに体系化されています。
 
-- [アーキテクチャ詳細](docs/ARCHITECTURE.md)
-- [運用・デプロイガイド](docs/OPERATIONS.md)
-- [AIエージェント開発ガイド](docs/AI_DEVELOPMENT.md)
-- [開発プロセス憲法 (SKILL.md)](.agent/skills/api_development/SKILL.md)
+1.  **[設計詳細 (ARCHITECTURE.md)](docs/ARCHITECTURE.md)**: システム協調図、ディレクトリ構造、DB設計、認証フロー。
+2.  **[運用ガイド (OPERATIONS.md)](docs/OPERATIONS.md)**: デプロイ手順、ログ監視、CI/CD、マスター同期。
+3.  **[AI開発ガイド (AI_DEVELOPMENT.md)](docs/AI_DEVELOPMENT.md)**: anさん（AI）との協働フロー、TDD、AIプロセスの全体像。
+4.  **[日本語解説ガイド (SKILL_GUIDE_JP.md)](docs/SKILL_GUIDE_JP.md)**: AIの思考規約（SKILL.md）の日本語詳細解説。
 
 ## 開発ルール（マネージャー・AIエージェント用）
 

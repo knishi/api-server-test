@@ -45,5 +45,4 @@ git merge upstream/main
 ## 5. セキュリティ
 
 - **非root実行**: Dockerコンテナはセキュリティ向上のため、`apibase` という一般ユーザーで実行されます。
-- **依存関係の固定**: `requirements.txt` ですべてのパッケージのバージョンを固定し、予期せぬアップデートによる脆弱性混入を防ぎます。
- Elephant
+- **依存関係の固定**: `pyproject.toml` および `requirements.txt` ですべてのパッケージのバージョンを固定し、予期せぬアップデートによる脆弱性混入を防ぎます。
