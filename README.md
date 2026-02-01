@@ -37,6 +37,7 @@ docker compose up --build
 
 - [アーキテクチャ詳細](docs/ARCHITECTURE.md)
 - [運用・デプロイガイド](docs/OPERATIONS.md)
+- [AIエージェント開発ガイド](docs/AI_DEVELOPMENT.md)
 - [開発プロセス憲法 (SKILL.md)](.agent/skills/api_development/SKILL.md)
 
 ## 開発ルール（マネージャー・AIエージェント用）
