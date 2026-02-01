@@ -23,11 +23,22 @@ def setup_app(config=None):
     if not config:
         config = get_pecan_config()
 
+    # Setup logging
+    from oslo_log import log as logging
+    from oslo_config import cfg
+    logging.register_options(cfg.CONF)
+    logging.setup(cfg.CONF, 'myapi')
+
+    # Register hooks
+    from myapi.common import hooks
+    app_hooks = [hooks.ErrorHook()]
+
     app = pecan.make_app(
         config.app.root,
         static_root=config.app.static_root,
         template_path=config.app.template_path,
         debug=config.app.debug,
+        hooks=app_hooks,
         force_canonical=getattr(config.app, 'force_canonical', True)
     )
     

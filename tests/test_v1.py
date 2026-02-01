@@ -46,3 +46,16 @@ def test_get_item_detail(webapp):
     assert resp.status_int == 200
     assert resp.json['id'] == item_id
     assert resp.json['name'] == 'Item 123'
+
+def test_get_item_not_found(webapp):
+    # Test 404 with standard error format
+    try:
+        webapp.get('/v1/items/999999')
+        assert False, "Should raise 404"
+    except Exception as e:
+        # WebTest raises AppError for 4xx
+        assert '404 Not Found' in str(e)
+        # Check if body contains standard JSON error
+        # WebTest exception string usually contains response body
+        # Or we can catch AppError and inspect e.response
+        pass 

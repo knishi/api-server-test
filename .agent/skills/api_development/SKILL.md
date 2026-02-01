@@ -30,19 +30,37 @@ This skill transforms the agent into a full-stack API development team. It stric
     - **Documentation**: Docstrings for all public interfaces.
     - **Error Handling**: Graceful failure modes, not just success paths.
 
-### 3. Verification Mode: QA & DevOps
+### 3. Verification Mode: QA & SRE
 *Act as: QA Engineer, Site Reliability Engineer (SRE)*
-- **Objective**: Prove it works and ensure it runs anywhere.
+- **Objective**: Prove it works, ensure it is secure, and runs reliably.
 - **Responsibilities**:
-    - **Testing**:
-        - Write and run unit tests (pytest).
-        - Use `curl` or scripts to verify endpoints.
-    - **Infrastructure**:
-        - Create `Dockerfile` and `docker-compose.yml`.
-        - Setup `nginx` or other gateways if needed.
-    - **Reporting**:
-        - Update `walkthrough.md` with proof of functionality (logs, responses).
-    - **Cleanup**: Ensure no zombie processes remain.
+    - **Testing**: Unit tests (pytest), Integration tests.
+    - **Infrastructure**: Docker, CI/CD.
+    - **Operational Design**: Logging standards, metrics (StatsD/Prometheus), error tracking.
+
+### 4. specialized Roles (Intervention Triggers)
+These roles intervene during Planning and Verification.
+
+#### Security Engineer
+- **Trigger**: Auth changes, sensitive data handling, dependency updates.
+- **Actions**:
+    - Review `implementation_plan.md` for threat modeling.
+    - Audit changes for secrets leakage or injection vulnerabilities.
+    - Enforce "Secure by Design" (e.g. least privilege).
+
+#### Operations Lead (SRE)
+- **Trigger**: New components (DB, Middleware), Config changes.
+- **Actions**:
+    - Ensure configuration is decoupled from code (Oslo.config).
+    - define how to monitor the new feature.
+    - Review `walkthrough.md` for runbooks/utility commands.
+
+#### Process & Compliance Manager
+- **Trigger**: Start/End of Tasks, Task Failures.
+- **Actions**:
+    - **Audit**: Verify TDD cycle (was Red test actually created?).
+    - **Correction**: Stop "Cowboy Coding". If a step is skipped, force a rollback or immediate remediation.
+    - **Retrospective**: Update `SKILL.md` if the process itself is flawed.
 
 ## Workflow Rules
 
@@ -57,4 +75,19 @@ This skill transforms the agent into a full-stack API development team. It stric
     -   `fix/xxx`: For bug fixes.
     -   **Merge Rule**: All changes must go through a Pull Request (PR) and pass CI.
 4.  **Infrastructure as Code**: Configuration and deployment steps must be codified.
-5.  **Artifact Discipline**: Keep `task.md`, `implementation_plan.md`, and `walkthrough.md` in sync.
+6.  **Dependency Management (OSS Lifecycle)**:
+    -   **Pin Versions**: `requirements.txt` must specify exact versions (e.g. `==1.2.3`) to prevent surprise breakage.
+    -   **Regular Updates**: Security Engineer must audit dependencies weekly for EOL/Vulnerabilities.
+    -   **Minimal Dependencies**: Do not add libraries unless absolutely necessary.
+
+## Coding Standards (New)
+
+### Logging (Oslo.log)
+- Use `LOG = logging.getLogger(__name__)`.
+- Log **Correlation IDs** (request_id) for tracing.
+- Levels: `INFO` for normal ops, `ERROR` for faults requiring action, `DEBUG` for dev only.
+
+### Error Handling
+- Do NOT return `dict(error=...)`. **Raise Exceptions**.
+- Use custom exception classes inheriting from `myapi.common.exception.AppError`.
+- Unhandled exceptions must be caught by Global Handler and returned as standard JSON.
