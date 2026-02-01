@@ -1,7 +1,5 @@
 # アーキテクチャ詳細
 
-<img src="../docs/images/architecture_hero.png" width="100%" style="display: block; margin-bottom: 20px; border-radius: 4px;" alt="Architecture Overview">
-
 本プロジェクトの内部構造と、各コンポーネントがどのように協調して動作するかを説明します。
 
 ## 1. システム協調フロー (Coordination Flow)
