@@ -10,8 +10,8 @@ server = {
 app = {
     'root': 'apibase.api.root.RootController',
     'modules': ['apibase.api'],
-    'static_root': '%(confdir)s/public',
-    'template_path': '%(confdir)s/apibase/api/templates',
+    'static_root': '%(confdir)s/../../public',
+    'template_path': '%(confdir)s/../../apibase/api/templates',
     'debug': True,
     'errors': {
         404: '/error/404',

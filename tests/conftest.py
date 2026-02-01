@@ -1,6 +1,6 @@
 import pytest
 from webtest import TestApp
-from app import setup_app
+from apibase.app import setup_app
 
 @pytest.fixture
 def app():

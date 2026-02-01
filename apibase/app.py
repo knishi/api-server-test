@@ -14,9 +14,10 @@ CONF.register_group(opt_group)
 CONF.register_opts(api_opts, group=opt_group)
 
 def get_pecan_config():
-    # In a real OpenStack app, we might mix oslo.config and pecan config
-    # For simplicity, we load the python config file
-    filename = os.path.abspath(os.path.join(os.path.dirname(__file__), 'config.py'))
+    # In a professional setup, we find config from etc/apibase
+    # We look relative to the root of the project
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    filename = os.path.join(root_dir, 'etc', 'apibase', 'config.py')
     return pecan.configuration.conf_from_file(filename)
 
 def setup_app(config=None):

@@ -6,21 +6,19 @@
 
 ```text
 ├── etc/                   # 設定ファイル類
-│   ├── apibase/           # アプリのデフォルト設定・サンプル
-│   └── nginx/             # Nginx設定
+│   ├── apibase/
+│   │   └── config.py      # アプリケーション設定 (Pecan config)
+│   └── nginx/
 ├── build/                 # ビルド・デプロイ関連ファイル
 ├── bin/                   # 運用補助スクリプト (manage.sh 等)
 ├── public/                # 静的ファイル (API docs, etc.)
 ├── apibase/               # アプリケーション・パッケージ
+│   ├── app.py             # WSGIエントリポイント
 │   ├── api/               # Webレイヤー
 │   ├── db/                # DBレイヤー
-│   │   └── migrations/    # AlembicによるDBマイグレーション管理
-│   ├── cmd/               # 管理コマンド (DB初期化等)
-│   ├── common/            # 共通基盤
-│   └── middleware.py      # ミドルウェア
-├── pyproject.toml         # [NEW] プロジェクト設定・依存関係の集約
-├── app.py                 # WSGIエントリポイント
-└── config.py              # アプリ設定
+│   └── ...
+├── pyproject.toml         # プロジェクトメタデータ・設定集約
+└── docker-compose.yml     # コンテナオーケストレーション
 ```
 
 ## 2. 認証フロー
