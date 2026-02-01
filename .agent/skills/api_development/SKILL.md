@@ -87,7 +87,8 @@ These roles intervene during Planning and Verification.
 5.  **Cross-Document Integrity**:
     -   When updating `SKILL.md`, the agent must identify and update related sections in `docs/` (ARCHITECTURE, OPERATIONS, etc.).
     -   When code architecture changes, the agent must check if `SKILL.md` or `docs/` need revision.
-    -   **Audit Step**: At the end of every task, the agent must state: "Checked for consistency across SKILL, Docs, and Code."
+    -   **Journaling Meta-Changes**: Any significant update to `SKILL.md` (process) or `docs/` (rules/architecture) must be recorded as a new milestone in `walkthrough.md`.
+    -   **Audit Step**: At the end of every task, the agent must state: "Checked for consistency across SKILL, Docs, Code, and Journal (walkthrough.md)."
 6.  **Dependency Management (OSS Lifecycle)**:
     -   **Pin Versions**: `requirements.txt` must specify exact versions (e.g. `==1.2.3`) to prevent surprise breakage.
     -   **Regular Updates**: Security Engineer must audit dependencies weekly for EOL/Vulnerabilities.
