@@ -1,6 +1,6 @@
 # アーキテクチャ詳細
 
-<img src="../docs/images/architecture_hero.png" width="100%" height="80" style="object-fit: cover; display: block; margin: 0 auto 20px auto;" alt="Architecture Overview">
+<img src="../docs/images/architecture_hero.png" width="300" style="display: block; margin-bottom: 20px;" alt="Architecture Overview">
 
 本プロジェクトの内部構造と、各コンポーネントがどのように協調して動作するかを説明します。
 
