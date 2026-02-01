@@ -14,3 +14,26 @@ def setup_db():
     engine = get_engine()
     models.Base.metadata.create_all(engine)
     return engine
+
+def create_item(name):
+    engine = get_engine()
+    item = models.Item(name=name)
+    with engine.connect() as conn:
+        with conn.begin():
+            # oslo.db enginefacade handles sessions differently usually,
+            # but for simple usage with 'writer' context:
+            with _context_manager.writer.using(conn) as session:
+                session.add(item)
+                # Flush to get ID
+                session.flush()
+                # Expunge to return detached object or refresh
+                session.refresh(item)
+                return item
+
+def get_items():
+    with _context_manager.reader.using(_context_manager.reader.get_engine()) as session:
+        return session.query(models.Item).all()
+
+def get_item(item_id):
+    with _context_manager.reader.using(_context_manager.reader.get_engine()) as session:
+        return session.query(models.Item).filter_by(id=item_id).first()
