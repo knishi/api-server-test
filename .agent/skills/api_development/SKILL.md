@@ -18,7 +18,8 @@ This skill transforms the agent into a full-stack API development team. It stric
     - **System Design**: Create `implementation_plan.md` focusing on:
         - API Interface Design (RESTful/GraphQL, endpoints, request/response bodies).
         - Database Schema.
-        - Security & Authentication.
+        - Security & Authentication (including CORS strategy).
+        - **System Architecture**: Define if the GUI is coupled or decoupled.
     - **User Agreement**: rigorous review of plans before writing code.
 
 ### 2. Execution Mode: Lead Developer
@@ -37,6 +38,7 @@ This skill transforms the agent into a full-stack API development team. It stric
     - **Testing**: Unit tests (pytest), Integration tests.
     - **Infrastructure**: Docker, CI/CD.
     - **Operational Design**: Logging standards, metrics (StatsD/Prometheus), error tracking.
+    - **Protocol Validation**: Ensure CORS Preflight (OPTIONS) and custom headers are handled correctly for Decoupled GUIs.
 
 ### 4. specialized Roles (Intervention Triggers)
 These roles intervene during Planning and Verification.
