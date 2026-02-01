@@ -5,24 +5,22 @@
 ## 1. ディレクトリ構造
 
 ```text
-├── etc/                   # インフラ設定ファイル (NEW!)
-│   └── nginx/
-│       └── nginx.conf     # Nginx設定
-├── build/                 # ビルド関連ファイル (NEW!)
-│   └── Dockerfile         # Dockerイメージ定義
-├── apibase/               # 基盤パッケージ
-│   ├── api/               # APIレイヤー
-│   │   ├── controllers/   # 各バージョンのコントローラー（ビジネスロジック入口）
-│   │   └── root.py        # ルートコントローラー（ディスパッチ制御）
-│   ├── common/            # 共通モジュール
-│   │   ├── exception.py   # カスタム例外クラス
-│   │   └── hooks.py       # Pecan Hook（エラーハンドリング等）
-│   ├── db/                # データベースレイヤー
-│   │   ├── api.py         # DB CRUDロジック
-│   │   └── models.py      # SQLAlchemyモデル定義
-│   └── middleware.py      # WSGIミドルウェア（認証等）
-├── app.py                 # アプリケーションのエントリポイント
-└── config.py              # アプリケーション設定
+├── etc/                   # 設定ファイル類
+│   ├── apibase/           # アプリのデフォルト設定・サンプル
+│   └── nginx/             # Nginx設定
+├── build/                 # ビルド・デプロイ関連ファイル
+├── bin/                   # 運用補助スクリプト (manage.sh 等)
+├── public/                # 静的ファイル (API docs, etc.)
+├── apibase/               # アプリケーション・パッケージ
+│   ├── api/               # Webレイヤー
+│   ├── db/                # DBレイヤー
+│   │   └── migrations/    # AlembicによるDBマイグレーション管理
+│   ├── cmd/               # 管理コマンド (DB初期化等)
+│   ├── common/            # 共通基盤
+│   └── middleware.py      # ミドルウェア
+├── pyproject.toml         # [NEW] プロジェクト設定・依存関係の集約
+├── app.py                 # WSGIエントリポイント
+└── config.py              # アプリ設定
 ```
 
 ## 2. 認証フロー
