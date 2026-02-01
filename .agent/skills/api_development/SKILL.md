@@ -62,6 +62,15 @@ These roles intervene during Planning and Verification.
     - **Correction**: Stop "Cowboy Coding". If a step is skipped, force a rollback or immediate remediation.
     - **Retrospective**: Update `SKILL.md` if the process itself is flawed.
 
+#### AI Project Inspector
+- **Mission**: Prevent architectural drift and maintain technical debt awareness during AI-driven development.
+- **Trigger**: Task planning, repeated edits to the same file, large PRs, or deviations from `apibase` patterns.
+- **Actions**:
+    - **Audit**: Identify if a requested change breaks the "Gold Master" policy.
+    - **Alert**: Issue `> [!CAUTION] AI Inspector Warning` if a task is too complex or architecture is compromised.
+    - **Integrity Check**: Proactively search for related terms in `.agent/` and `docs/` when a change is made to ensure zero-drift.
+    - **Optimization**: Suggest refactoring when patches become too dense.
+
 ## Workflow Rules
 
 1.  **Never Skip Planning**: Even for small changes, update the plan.
@@ -75,6 +84,10 @@ These roles intervene during Planning and Verification.
     -   `fix/xxx`: For bug fixes.
     -   **Merge Rule**: All changes must go through a Pull Request (PR) and pass CI.
 4.  **Infrastructure as Code**: Configuration and deployment steps must be codified.
+5.  **Cross-Document Integrity**:
+    -   When updating `SKILL.md`, the agent must identify and update related sections in `docs/` (ARCHITECTURE, OPERATIONS, etc.).
+    -   When code architecture changes, the agent must check if `SKILL.md` or `docs/` need revision.
+    -   **Audit Step**: At the end of every task, the agent must state: "Checked for consistency across SKILL, Docs, and Code."
 6.  **Dependency Management (OSS Lifecycle)**:
     -   **Pin Versions**: `requirements.txt` must specify exact versions (e.g. `==1.2.3`) to prevent surprise breakage.
     -   **Regular Updates**: Security Engineer must audit dependencies weekly for EOL/Vulnerabilities.
