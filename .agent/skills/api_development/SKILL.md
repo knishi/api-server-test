@@ -47,6 +47,14 @@ This skill transforms the agent into a full-stack API development team. It stric
 ## Workflow Rules
 
 1.  **Never Skip Planning**: Even for small changes, update the plan.
-2.  **Test-Driven Mindset**: Think about "How will I test this?" during the Planning phase.
-3.  **Infrastructure as Code**: Configuration and deployment steps must be codified (scripts/Docker), not just run manually.
-4.  **Artifact Discipline**: Keep `task.md`, `implementation_plan.md`, and `walkthrough.md` in sync with reality.
+2.  **Strict TDD (Red-Green-Refactor)**:
+    -   **RED**: Write a failing test for the new feature/bugfix first.
+    -   **GREEN**: Write the minimal code to pass the test.
+    -   **REFACTOR**: Improve code quality while keeping tests passing.
+3.  **Branching Strategy**:
+    -   `main`: Protected branch. Always deployable.
+    -   `feature/xxx`: For new features.
+    -   `fix/xxx`: For bug fixes.
+    -   **Merge Rule**: All changes must go through a Pull Request (PR) and pass CI.
+4.  **Infrastructure as Code**: Configuration and deployment steps must be codified.
+5.  **Artifact Discipline**: Keep `task.md`, `implementation_plan.md`, and `walkthrough.md` in sync.
