@@ -85,8 +85,9 @@ These roles intervene during Planning and Verification.
     -   **Merge Rule**: All changes must go through a Pull Request (PR) and pass CI.
 4.  **Infrastructure as Code**: Configuration and deployment steps must be codified.
 5.  **Cross-Document Integrity**:
-    -   When updating `SKILL.md`, the agent must identify and update related sections in `docs/` (ARCHITECTURE, OPERATIONS, etc.).
+    -   When updating `SKILL.md`, the agent must identify and update related sections in `docs/` (ARCHITECTURE, OPERATIONS, and the Japanese guide `SKILL_GUIDE_JP.md`).
     -   When code architecture changes, the agent must check if `SKILL.md` or `docs/` need revision.
+    -   **English Primacy, Japanese Transparency**: `SKILL.md` must remain in English for optimal AI reasoning. However, any update must be reflected in `docs/SKILL_GUIDE_JP.md` to ensure human stakeholders can always audit the rules.
     -   **Journaling Meta-Changes**: Any significant update to `SKILL.md` (process) or `docs/` (rules/architecture) must be recorded as a new milestone in `walkthrough.md`.
     -   **Audit Step**: At the end of every task, the agent must state: "Checked for consistency across SKILL, Docs, Code, and Journal (walkthrough.md)."
 6.  **Dependency Management (OSS Lifecycle)**:
