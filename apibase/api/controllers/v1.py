@@ -2,8 +2,8 @@ from pecan import expose, rest
 
 from pecan import expose, rest, request, response
 from oslo_log import log as logging
-from myapi.db import api as db_api
-from myapi.common import exception
+from apibase.db import api as db_api
+from apibase.common import exception
 
 LOG = logging.getLogger(__name__)
 

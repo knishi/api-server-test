@@ -27,10 +27,10 @@ def setup_app(config=None):
     from oslo_log import log as logging
     from oslo_config import cfg
     logging.register_options(cfg.CONF)
-    logging.setup(cfg.CONF, 'myapi')
+    logging.setup(cfg.CONF, 'apibase')
 
     # Register hooks
-    from myapi.common import hooks
+    from apibase.common import hooks
     app_hooks = [hooks.ErrorHook()]
 
     app = pecan.make_app(
@@ -43,7 +43,7 @@ def setup_app(config=None):
     )
     
     # Wrap with Keystone-compatible middleware
-    from myapi.middleware import FakeAuthMiddleware
+    from apibase.middleware import FakeAuthMiddleware
     app = FakeAuthMiddleware(app)
     
     return app

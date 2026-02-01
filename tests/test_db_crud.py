@@ -1,5 +1,5 @@
-from myapi.db import api
-from myapi.db import models
+from apibase.db import api
+from apibase.db import models
 
 def test_create_and_get_item():
     # Setup DB

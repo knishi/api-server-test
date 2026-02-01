@@ -89,5 +89,16 @@ These roles intervene during Planning and Verification.
 
 ### Error Handling
 - Do NOT return `dict(error=...)`. **Raise Exceptions**.
-- Use custom exception classes inheriting from `myapi.common.exception.AppError`.
+- Use custom exception classes inheriting from `apibase.common.exception.AppError`.
 - Unhandled exceptions must be caught by Global Handler and returned as standard JSON.
+
+## Master Project Stewardship
+
+### 1. The "Gold Master" Policy
+- This repository is the source of truth for base infrastructure (DB drivers, Auth, Logging, CI/CD).
+- **Prohibition**: Do not add business-specific logic to the `apibase` common modules.
+
+### 2. Template Inheritance Workflow
+- **Initialization**: Clone or use GitHub "Use this template".
+- **Upstream Sync**: Add this master as `upstream` remote. Periodically `git merge upstream/main` to receive security and baseline updates.
+- **Feedback**: Generic improvements found in child projects must be ported back via PRs to this master.

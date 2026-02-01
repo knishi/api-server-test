@@ -1,6 +1,6 @@
 from oslo_config import cfg
 from oslo_db.sqlalchemy import enginefacade
-from myapi.db import models
+from apibase.db import models
 
 CONF = cfg.CONF
 

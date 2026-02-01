@@ -1,8 +1,8 @@
 import pytest
 from oslo_config import cfg
 from oslo_db import options
-from myapi.db import api
-from myapi.db import models
+from apibase.db import api
+from apibase.db import models
 
 def test_db_connection_and_model():
     # Setup config

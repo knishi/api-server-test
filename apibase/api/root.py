@@ -1,5 +1,5 @@
 from pecan import expose
-from myapi.api.controllers import v1
+from apibase.api.controllers import v1
 
 class RootController(object):
     @expose(generic=True, template='json')
