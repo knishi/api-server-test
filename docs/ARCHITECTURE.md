@@ -5,6 +5,11 @@
 ## 1. ディレクトリ構造
 
 ```text
+├── etc/                   # インフラ設定ファイル (NEW!)
+│   └── nginx/
+│       └── nginx.conf     # Nginx設定
+├── build/                 # ビルド関連ファイル (NEW!)
+│   └── Dockerfile         # Dockerイメージ定義
 ├── apibase/               # 基盤パッケージ
 │   ├── api/               # APIレイヤー
 │   │   ├── controllers/   # 各バージョンのコントローラー（ビジネスロジック入口）
