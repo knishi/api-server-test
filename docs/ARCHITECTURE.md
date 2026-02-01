@@ -1,8 +1,35 @@
 # アーキテクチャ詳細
 
-本プロジェクトの内部構造と設計方針について説明します。
+![Architecture Overview](../docs/images/architecture_hero.png)
 
-## 1. ディレクトリ構造
+本プロジェクトの内部構造と、各コンポーネントがどのように協調して動作するかを説明します。
+
+## 1. システム協調フロー (Coordination Flow)
+
+本システムは Docker Compose によってオーケストレーションされ、Nginx がリバースプロキシとして、Gunicorn が WSGI サーバーとして機能します。
+
+```mermaid
+graph TD
+    User((ユーザー/クライアント)) -->|HTTP 8080| Nginx[Nginx Container]
+    
+    subgraph "Docker Compose Network"
+        Nginx -->|Proxy Pass| Gunicorn[Gunicorn / WSGI]
+        Gunicorn -->|Load App| App[apibase.app]
+        App -->|SQLAlchemy| DB[(Database / SQLite)]
+    end
+    
+    subgraph "Logic Layer"
+        App -->|Dispatch| Controllers[Controllers]
+        Controllers -->|Access| DBApi[DB API]
+        DBApi -->|Query| Models[Models]
+    end
+
+    style App fill:#f9f,stroke:#333,stroke-width:2px
+    style Nginx fill:#bbf,stroke:#333,stroke-width:2px
+    style Gunicorn fill:#dfd,stroke:#333,stroke-width:2px
+```
+
+## 2. ディレクトリ構造
 
 ```text
 ├── etc/                   # 設定ファイル類

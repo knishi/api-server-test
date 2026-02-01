@@ -6,7 +6,30 @@
 
 開発は必ず以下のフェーズを経て進行します。各フェーズの成果物は、後続のミスを防ぐための「記憶」として機能します。
 
-### ① Planning (計画)
+```mermaid
+sequenceDiagram
+    participant User as ユーザー (Manager)
+    participant AI as AIエージェント (anさん)
+    participant Artifacts as 記憶 (task.md/Journal)
+
+    Note over User, AI: ① Planning (計画)
+    User->>AI: 機能を依頼
+    AI->>Artifacts: 計画書作成 (implementation_plan.md)
+    AI-->>User: 計画のレビュー依頼
+    User->>AI: LGTM (承認)
+
+    Note over User, AI: ② Execution (実装)
+    AI->>AI: TDDサイクル (Red -> Green -> Refactor)
+    AI->>Artifacts: 進捗更新 (task.md)
+
+    Note over User, AI: ③ Verification (検証)
+    AI->>AI: 全テスト実行 & 動作確認
+    AI->>Artifacts: 完了報告作成 (walkthrough.md)
+    AI-->>User: 成果物の報告
+    User->>AI: 確認 & マージ承認
+```
+
+### 各フェーズの詳細
 - **AIの動き**: `task.md`（タスク一覧）と `implementation_plan.md`（実装計画書）を作成・更新します。
 - **人間の役割**: 計画に無理がないか、設計に違和感がないかを確認し、承認（LGTM）を出します。
 - **重要**: 計画なしにコードを書き始めることは「Cowboy Coding」として禁止されています。
