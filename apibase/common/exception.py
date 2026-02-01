@@ -15,3 +15,19 @@ class ItemNotFound(AppError):
 class InvalidInput(AppError):
     code = 400
     message = "Invalid input received."
+
+class NotAuthorized(AppError):
+    code = 401
+    message = "Not authorized."
+
+class Forbidden(AppError):
+    code = 403
+    message = "Access forbidden."
+
+class Conflict(AppError):
+    code = 409
+    message = "Conflict detected."
+
+class ServiceUnavailable(AppError):
+    code = 503
+    message = "Service temporarily unavailable."

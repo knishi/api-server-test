@@ -21,7 +21,14 @@ class ErrorHook(hooks.PecanHook):
             )
         elif isinstance(exc, webob.exc.HTTPError):
             # Already a webob error (e.g. 404 from object dispatch)
-            return exc
+            # Ensure we return a JSON body even for webob's default errors
+            LOG.warning("HTTPError caught: %s", exc)
+            body = json.dumps({'error': {'code': exc.code, 'message': exc.detail or exc.explanation}}).encode('utf-8')
+            return webob.Response(
+                body=body,
+                status=exc.code,
+                content_type='application/json; charset=UTF-8'
+            )
         else:
             # Unknown exception
             LOG.exception("Unhandled exception caught")
