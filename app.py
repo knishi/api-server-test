@@ -30,6 +30,11 @@ def setup_app(config=None):
         debug=config.app.debug,
         force_canonical=getattr(config.app, 'force_canonical', True)
     )
+    
+    # Wrap with Keystone-compatible middleware
+    from myapi.middleware import FakeAuthMiddleware
+    app = FakeAuthMiddleware(app)
+    
     return app
 
 # WSGI Application for Gunicorn

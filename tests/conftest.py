@@ -16,4 +16,8 @@ def app():
 
 @pytest.fixture
 def webapp(app):
-    return TestApp(app)
+    # Valid token by default to keep existing TDD tests Green
+    tapp = TestApp(app)
+    # webtest mapping: Header 'X-Auth-Token' -> Environ 'HTTP_X_AUTH_TOKEN'
+    tapp.extra_environ = {'HTTP_X_AUTH_TOKEN': 'SECRET_TOKEN'}
+    return tapp
